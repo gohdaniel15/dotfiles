@@ -1,0 +1,4 @@
+colorscheme moonfly
+set lines=50
+set columns=180
+set guifont=Menlo:h15
