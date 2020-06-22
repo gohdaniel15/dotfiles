@@ -1,3 +1,5 @@
+set encoding=utf-8
+
 " Vundle
 " -------
 set nocompatible                                      " be iMproved, required
@@ -25,14 +27,17 @@ Plugin 'danro/rename.vim'                             " Rename the current file 
 Plugin 'christoomey/vim-tmux-navigator'               " Navigation between tmux panes and vim splits
 Plugin 'ntpeters/vim-better-whitespace'               " Whitespace highlighting
 Plugin 'Yggdroot/indentLine'                          " Show invisibles
-Plugin 'fcpg/vim-farout'                              " Add FarOut theme
-Plugin 'rakr/vim-one'
+Plugin 'tomasiser/vim-code-dark'
 Plugin 'bluz71/vim-moonfly-colors'
 Plugin 'pangloss/vim-javascript'                      " Javascript syntax highlighting
 Plugin 'mxw/vim-jsx'                                  " JSX syntax highlighting
 Plugin 'elixir-editors/vim-elixir'                    " Elixir syntax highlighting
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'szw/vim-tags'                                 " Vim with Ctags
+Plugin 'tpope/vim-fugitive'                           " Git wrapper for Vim
+Plugin 'tpope/vim-rhubarb'                            " GitHub extension for fugitive.vim
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/vim-lsp'
 
 " All of your Plugins must be added before the following line
 call vundle#end()                                     " required
@@ -51,6 +56,8 @@ let g:ctrlp_use_caching = 0
 " Show hidden files in NerdTree
 let NERDTreeShowHidden=1
 map <C-n> :NERDTreeToggle<CR>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Strip whitespace on file save
 autocmd BufEnter * EnableStripWhitespaceOnSave
@@ -71,8 +78,6 @@ nnoremap <silent> <S-F12> :bp<CR>
 set expandtab
 set tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent
-set textwidth=80
-set wrapmargin=20
 
 " Key mappings
 " -------------
@@ -112,13 +117,31 @@ augroup END
 
 " Theme
 " ------
-" colorscheme farout
+colorscheme codedark
 " set background = "dark"
 " let g:airline_theme = farout
 " set termguicolors
 
- " Change cursor shape between insert and normal mode in iTerm2.app
+" Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
+
+if executable('flow')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'flow',
+    \ 'cmd': {server_info->['flow', 'lsp']},
+    \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+    \ 'whitelist': ['javascript', 'javascript.jsx'],
+    \ })
+endif
+
+" Statusline
+set laststatus=2
+set statusline=%{FugitiveStatusline()}:%f
+
+" Folding style
+set foldmethod=syntax
+autocmd Syntax ruby,vim,xml,html,xhtml,perl normal zR
+
