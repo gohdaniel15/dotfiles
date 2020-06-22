@@ -85,8 +85,8 @@ set autoindent
 nmap 0 ^
 
 " Easy escape from Insert mode
-imap jk <esc>
-imap kj <esc>
+" imap jk <esc>
+" imap kj <esc>
 
 " Easier navigation between splits
 nnoremap <C-J> <C-W><C-J>
