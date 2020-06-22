@@ -10,10 +10,10 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
 
 2. Install plugins
-  1. From vim
+  - From vim
     Launch `vim` and run `:PluginInstall`
-  2. From command line
-    `vim +PluginInstall +qall`k
+  - From command line
+    `vim +PluginInstall +qall`
 
 ### SilverSearcher-ag
 #### Linux
