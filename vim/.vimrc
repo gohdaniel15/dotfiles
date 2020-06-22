@@ -38,6 +38,7 @@ Plugin 'tpope/vim-fugitive'                           " Git wrapper for Vim
 Plugin 'tpope/vim-rhubarb'                            " GitHub extension for fugitive.vim
 Plugin 'prabirshrestha/async.vim'
 Plugin 'prabirshrestha/vim-lsp'
+Plugin 'leafgarland/typescript-vim'                   " Typescript syntax files for Vim
 
 " All of your Plugins must be added before the following line
 call vundle#end()                                     " required
