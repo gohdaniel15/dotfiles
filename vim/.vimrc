@@ -61,7 +61,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Strip whitespace on file save
-autocmd BufEnter * EnableStripWhitespaceOnSave
+let g:strip_whitespace_on_save = 1
 
 " Enable show invisibles
 set conceallevel=1
