@@ -12,7 +12,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'ctrlpvim/ctrlp.vim'                           " CtrlP Fuzzy File Finder
+" Plugin 'ctrlpvim/ctrlp.vim'                           " CtrlP Fuzzy File Finder
+Plugin 'junegunn/fzf'                                 " A command-line fuzzy finder
+Plugin 'junegunn/fzf.vim'                             " FZF plugin for vim
 Plugin 'vim-ruby/vim-ruby'                            " Vim Ruby
 Plugin 'tpope/vim-rails'                              " Rails specific stuff
 Plugin 'tpope/vim-bundler'                            " Support for Ruby's bundler
@@ -52,14 +54,19 @@ filetype plugin on                                    " Enable filetype-specific
 " Plugin configuration
 " --------------------
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
-let g:ctrlp_user_command = 'ag %s -l --ignore node_modules/ --hidden --nocolor -g ""'
-let g:ctrlp_use_caching = 0
+" let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+" let g:ctrlp_use_caching = 0
+
+" FZF Configuration
+" -----------------
+nnoremap <c-p> :Files<CR>
 
 " Show hidden files in NerdTree
 let NERDTreeShowHidden=1
 map <C-n> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Show NerdTree when editor is opened at the start
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Strip whitespace on file save
 let g:strip_whitespace_on_save = 1
@@ -85,6 +92,10 @@ set autoindent
 " -------------
 " Easy access to start of line in Normal mode
 nmap 0 ^
+
+" Enable mouse
+" ------------
+set mouse=a
 
 " Easy escape from Insert mode
 " imap jk <esc>
