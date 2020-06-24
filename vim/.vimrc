@@ -1,57 +1,53 @@
 set encoding=utf-8
 
-" Vundle
+" VimPlug
 " -------
-set nocompatible                                      " be iMproved, required
-filetype off                                          " required
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'junegunn/fzf'                                 " A command-line fuzzy finder
+Plug 'junegunn/fzf.vim'                             " FZF plugin for vim
+Plug 'vim-ruby/vim-ruby'                            " Vim Ruby
+Plug 'tpope/vim-rails'                              " Rails specific stuff
+Plug 'tpope/vim-bundler'                            " Support for Ruby's bundler
+Plug 'tpope/vim-haml'                               " Haml syntax highlighting
+Plug 'tpope/vim-commentary'                         " Vim commenting using gc
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'                           " Vim surround using cs
+Plug 'slim-template/vim-slim'                       " Slim syntax highlighting
+Plug 'kchmck/vim-coffee-script'                     " CoffeeScript
+Plug 'scrooloose/nerdtree'                          " Nerd Tree view
+Plug 'danro/rename.vim'                             " Rename the current file in the vim buffer
+Plug 'christoomey/vim-tmux-navigator'               " Navigation between tmux panes and vim splits
+Plug 'ntpeters/vim-better-whitespace'               " Whitespace highlighting
+Plug 'Yggdroot/indentLine'                          " Show invisibles
+Plug 'tomasiser/vim-code-dark'
+Plug 'bluz71/vim-moonfly-colors'
+Plug 'pangloss/vim-javascript'                      " Javascript syntax highlighting
+Plug 'mxw/vim-jsx'                                  " JSX syntax highlighting
+Plug 'elixir-editors/vim-elixir'                    " Elixir syntax highlighting
+Plug 'jlanzarotta/bufexplorer'
+Plug 'szw/vim-tags'                                 " Vim with Ctags
+Plug 'tpope/vim-fugitive'                           " Git wrapper for Vim
+Plug 'tpope/vim-rhubarb'                            " GitHub extension for fugitive.vim
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'leafgarland/typescript-vim'                   " Typescript syntax files for Vim
+Plug 'neoclide/coc.nvim'                            " Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode
 
-" Plugin 'ctrlpvim/ctrlp.vim'                           " CtrlP Fuzzy File Finder
-Plugin 'junegunn/fzf'                                 " A command-line fuzzy finder
-Plugin 'junegunn/fzf.vim'                             " FZF plugin for vim
-Plugin 'vim-ruby/vim-ruby'                            " Vim Ruby
-Plugin 'tpope/vim-rails'                              " Rails specific stuff
-Plugin 'tpope/vim-bundler'                            " Support for Ruby's bundler
-Plugin 'tpope/vim-haml'                               " Haml syntax highlighting
-Plugin 'tpope/vim-commentary'                         " Vim commenting using gc
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'                           " Vim surround using cs
-Plugin 'slim-template/vim-slim'                       " Slim syntax highlighting
-Plugin 'kchmck/vim-coffee-script'                     " CoffeeScript
-Plugin 'scrooloose/nerdtree'                          " Nerd Tree view
-Plugin 'danro/rename.vim'                             " Rename the current file in the vim buffer
-Plugin 'christoomey/vim-tmux-navigator'               " Navigation between tmux panes and vim splits
-Plugin 'ntpeters/vim-better-whitespace'               " Whitespace highlighting
-Plugin 'Yggdroot/indentLine'                          " Show invisibles
-Plugin 'tomasiser/vim-code-dark'
-Plugin 'bluz71/vim-moonfly-colors'
-Plugin 'pangloss/vim-javascript'                      " Javascript syntax highlighting
-Plugin 'mxw/vim-jsx'                                  " JSX syntax highlighting
-Plugin 'elixir-editors/vim-elixir'                    " Elixir syntax highlighting
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'szw/vim-tags'                                 " Vim with Ctags
-Plugin 'tpope/vim-fugitive'                           " Git wrapper for Vim
-Plugin 'tpope/vim-rhubarb'                            " GitHub extension for fugitive.vim
-Plugin 'prabirshrestha/async.vim'
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'leafgarland/typescript-vim'                   " Typescript syntax files for Vim
-Plugin 'neoclide/coc.nvim'                            " Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode
-
-" All of your Plugins must be added before the following line
-call vundle#end()                                     " required
+call plug#end()
 
 filetype plugin indent on                             " required
 syntax on                                             " Enable syntax highlighting
 filetype on                                           " Enable filetype detection
 filetype plugin on                                    " Enable filetype-specific plugins
 
-" Plugin configuration
+" Plug configuration
 " --------------------
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
 " let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'

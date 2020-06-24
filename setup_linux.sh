@@ -20,8 +20,7 @@ mkdir ~/.vim/backup
 mkdir ~/.vim/undo
 
 echo "[setup.sh] Installing vim plugins"
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall! +CocInstall coc-json coc-tsserver +qall
+vim +PlugInstall! +CocInstall coc-json coc-tsserver +qall
 
 echo "[setup.sh] Installing ag silver_searcher for fuzzy finding"
 if [ !-f "$(command -v Vim)" ]
