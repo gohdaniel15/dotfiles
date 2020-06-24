@@ -59,7 +59,7 @@ filetype plugin on                                    " Enable filetype-specific
 
 " FZF Configuration
 " -----------------
-nnoremap <c-p> :Files<CR>
+nnoremap <c-p> :GFiles<CR>
 
 " Show hidden files in NerdTree
 let NERDTreeShowHidden=1
